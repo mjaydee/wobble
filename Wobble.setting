@@ -1,0 +1,82 @@
+{
+	Tools = ordered() {
+		Wobble = MacroOperator {
+			Inputs = ordered() {
+				MainInput1 = InstanceInput {
+					SourceOp = "Transform2",
+					Source = "Input",
+				},
+				Input1 = InstanceInput {
+					SourceOp = "Shake1",
+					Source = "RandomSeed",
+					Width = 1,
+					Default = 8058,
+				},
+				Input2 = InstanceInput {
+					SourceOp = "Shake1",
+					Source = "Randomize",
+					Width = 0.385,
+				},
+				Input3 = InstanceInput {
+					SourceOp = "Shake1",
+					Source = "Smoothness",
+					Default = 75,
+				},
+				Input4 = InstanceInput {
+					SourceOp = "Shake1",
+					Source = "YMinimum",
+					Default = 0,
+				},
+				Input5 = InstanceInput {
+					SourceOp = "Shake1",
+					Source = "YMaximum",
+					Default = 1,
+				},
+			},
+			Outputs = {
+				MainOutput1 = InstanceOutput {
+					SourceOp = "Transform2",
+					Source = "Output",
+				}
+			},
+			ViewInfo = GroupInfo { Pos = { 0, 0 } },
+			Tools = ordered() {
+				Transform2 = Transform {
+					CtrlWZoom = false,
+					Inputs = {
+						Center = Input {
+							SourceOp = "Perturb1",
+							Source = "Value",
+						},
+						Angle = Input {
+							SourceOp = "Shake1",
+							Source = "X",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 712, 8.57572 } },
+				},
+				Perturb1 = PerturbPoint {
+					CtrlWZoom = false,
+					Inputs = {
+						XScale = Input { Value = 0.2, },
+						YScale = Input { Value = 0.2, },
+						Strength = Input { Value = 0.25, },
+						Wobble = Input { Value = 0.91, },
+						Speed = Input { Value = 0.86, },
+					},
+				},
+				Shake1 = Shake {
+					Faster = true,
+					CtrlWZoom = false,
+					Inputs = {
+						RandomSeed = Input { Value = 8058, },
+						Smoothness = Input { Value = 75, },
+						XMinimum = Input { Value = -5, },
+						XMaximum = Input { Value = 5, },
+					},
+				}
+			},
+		}
+	},
+	ActiveTool = "Wobble"
+}
